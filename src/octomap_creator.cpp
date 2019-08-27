@@ -54,10 +54,16 @@ void print_query_info(point3d query, OcTreeNode* node) {
 
 int main(int argc, char** argv) {
 	ros::init(argc, argv, "octomap_creator");
-    ros::NodeHandle nh;
+  ros::NodeHandle nh("~");
 	// Read the map from the file.
     //read the map of the environment and save obstacles location
-	string mapPath = "/home/fernando/ABT_drone/Tapir14/tapir/problems/navtrack/maps/maparea.txt";
+  string mapPath;
+  nh.param<string>("mapFile", mapPath, "");
+  cout << "Map file path: " << mapPath << endl;
+  string btFilename;
+  nh.param<string>("octomapFile", btFilename, "");
+  cout << "Octomap file path: " << mapPath << endl;
+	//string mapPath = "/home/fernando/ABT_drone/Tapir14/tapir/problems/navtrack/maps/maparea.txt";
 	if(argc > 1)
 	{
 		mapPath = argv[1];
@@ -127,15 +133,15 @@ int main(int argc, char** argv) {
 
 
   cout << endl;
-  tree.writeBinary("scenario_8_obst.bt");
+  tree.writeBinary(btFilename);
   cout << "wrote example file simple_tree.bt" << endl << endl;
   cout << "now you can use octovis to visualize: octovis simple_tree.bt"  << endl;
   cout << "Hint: hit 'F'-key in viewer to see the freespace" << endl  << endl;  
   cout << "Now reading from binary" << endl;
   
-  string btFilename = "/home/fernando/catkin_test_ws/scenario_8_obst.bt";
+  //string btFilename = "/home/fernando/catkin_test_ws/scenario_8_obst.bt";
   OcTree* other_tree = new OcTree(btFilename);
-  cout << "read file scenario_8_obst.bt" << endl << endl;  
+  cout << "read file" << btFilename << endl << endl;  
   cout << "performing some queries:" << endl;
   
   query = point3d(0., 0., 0.);
