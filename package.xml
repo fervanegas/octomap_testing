@@ -5,9 +5,14 @@
   <description>The octomap_testing package</description>
 
   <!-- One maintainer tag required, multiple allowed, one person per tag -->
-  <!-- Example:  -->
+  <!-- Example: -->
   <!-- <maintainer email="jane.doe@example.com">Jane Doe</maintainer> -->
+
+  <!-- Original package maintainer -->
   <maintainer email="fernando@todo.todo">fernando</maintainer>
+
+  <!-- Maintainer of the ROS 2 conversion -->
+  <maintainer email="tajfoley@outlook.com">Taj Foley</maintainer>
 
 
   <!-- One license tag required, multiple allowed, one license per tag -->
@@ -27,42 +32,74 @@
   <!-- Example: -->
   <!-- <author email="jane.doe@example.com">Jane Doe</author> -->
 
+  <!-- Added for the ROS 2 port without replacing the original maintainer -->
+  <author email="tajfoley@outlook.com">Taj Foley (ROS 2 conversion)</author>
+
 
   <!-- The *depend tags are used to specify dependencies -->
-  <!-- Dependencies can be catkin packages or system dependencies -->
+  <!-- Dependencies can be ROS packages or system dependencies -->
   <!-- Examples: -->
+
   <!-- Use depend as a shortcut for packages that are both build and exec dependencies -->
-  <!--   <depend>roscpp</depend> -->
-  <!--   Note that this is equivalent to the following: -->
-  <!--   <build_depend>roscpp</build_depend> -->
-  <!--   <exec_depend>roscpp</exec_depend> -->
+  <!--   <depend>rclcpp</depend> -->
+
+  <!-- Note that this is equivalent to the following: -->
+  <!--   <build_depend>rclcpp</build_depend> -->
+  <!--   <exec_depend>rclcpp</exec_depend> -->
+
   <!-- Use build_depend for packages you need at compile time: -->
   <!--   <build_depend>message_generation</build_depend> -->
+
   <!-- Use build_export_depend for packages you need in order to build against this package: -->
   <!--   <build_export_depend>message_generation</build_export_depend> -->
+
   <!-- Use buildtool_depend for build tool packages: -->
-  <!--   <buildtool_depend>catkin</buildtool_depend> -->
+  <!--   <buildtool_depend>ament_cmake</buildtool_depend> -->
+
   <!-- Use exec_depend for packages you need at runtime: -->
   <!--   <exec_depend>message_runtime</exec_depend> -->
+
   <!-- Use test_depend for packages you need only for testing: -->
   <!--   <test_depend>gtest</test_depend> -->
+
   <!-- Use doc_depend for packages you need only for building documentation: -->
   <!--   <doc_depend>doxygen</doc_depend> -->
-  <buildtool_depend>catkin</buildtool_depend>
+
+
+  <!-- ROS 2 build system -->
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+
+  <!-- Dependencies required to compile the C++ node -->
   <build_depend>octomap</build_depend>
-  <build_depend>roscpp</build_depend>
-  <build_depend>std_msgs</build_depend>
+  <build_depend>rclcpp</build_depend>
+
+
+  <!-- Dependencies exported to packages that build against this package -->
   <build_export_depend>octomap</build_export_depend>
-  <build_export_depend>roscpp</build_export_depend>
-  <build_export_depend>std_msgs</build_export_depend>
+  <build_export_depend>rclcpp</build_export_depend>
+
+
+  <!-- Dependencies required while running the C++ node -->
   <exec_depend>octomap</exec_depend>
-  <exec_depend>roscpp</exec_depend>
-  <exec_depend>std_msgs</exec_depend>
+  <exec_depend>rclcpp</exec_depend>
+
+
+  <!-- Dependencies required by the ROS 2 XML launch files -->
+  <exec_depend>ros2launch</exec_depend>
+  <exec_depend>launch_ros</exec_depend>
+  <exec_depend>launch_xml</exec_depend>
+
+
+  <!-- Nodes started by visualise_map.launch.xml -->
+  <exec_depend>octomap_server</exec_depend>
+  <exec_depend>rviz2</exec_depend>
 
 
   <!-- The export tag contains other, unspecified, tags -->
   <export>
-    <!-- Other tools can request additional information be placed here -->
-
+    <!-- ROS 2 CHANGE: identify this as an ament_cmake package -->
+    <build_type>ament_cmake</build_type>
   </export>
+
 </package>

@@ -1,13 +1,24 @@
 <launch>
-	
-    <arg name="mapFilePath"         default="map_flight_area.txt"/>
-    <arg name="octomapFileName"         default="map_flight_area.bt"/>	
+
+    <arg name="mapFilePath" default="map_flight_area.txt"/>
+    <arg name="octomapFileName" default="map_flight_area.bt"/>
 
 
-    <node pkg="octomap_testing" type="octomap_creator_node" name="octomap_creator" output="screen">
-        <param name="mapFile"       value="$(find octomap_testing)/maps/$(arg mapFilePath)" />
-        <param name="octomapFile"  value="$(find octomap_testing)/maps/$(arg octomapFileName)" />
+    <!-- Octomap creator application -->
+    <node
+        pkg="octomap_testing"
+        exec="octomap_creator_node"
+        name="octomap_creator"
+        output="screen">
+
+        <param
+            name="mapFile"
+            value="$(find-pkg-share octomap_testing)/maps/$(var mapFilePath)"/>
+
+        <param
+            name="octomapFile"
+            value="$(find-pkg-share octomap_testing)/maps/$(var octomapFileName)"/>
+
     </node>
 
 </launch>
-
